@@ -3,8 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/app/App';
-import playGame from './phaser/test-scene';
 import reportWebVitals from './reportWebVitals';
+
+// import scenes
+import playGame from './phaser/test-scene';
+import playPlatformerGame from './phaser/basic-platform';
 
 const config = {
   type: Phaser.AUTO,
@@ -13,10 +16,11 @@ const config = {
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 200 },
+      gravity: { y: 300 },
+      debug: false
     },
   },
-  scene: playGame,
+  scene: playPlatformerGame,
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

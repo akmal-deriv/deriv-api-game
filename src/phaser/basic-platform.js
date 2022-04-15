@@ -11,10 +11,12 @@ class playPlatformerGame extends Phaser.Scene {
     super("PlayPlatformerGame");
   }
   preload() {
-    this.load.image("sky", "src/assets/sky.png");
-    this.load.image("ground", "src/assets/platform.png");
-    this.load.image("star", "src/assets/star.png");
-    this.load.spritesheet("dude", "./src/assets/dude.png", {
+    this.load.setBaseURL("http://labs.phaser.io"); // TODO: provide url to our own assets
+
+    this.load.image("sky", "assets/skies/sky4.png");
+    this.load.image("ground", "assets/sprites/platform.png");
+    this.load.image("star", "assets/demoscene/ball-tlb.png");
+    this.load.spritesheet("dude", "assets/sprites/dude.png", {
       frameWidth: 32,
       frameHeight: 48,
     });
@@ -29,17 +31,17 @@ class playPlatformerGame extends Phaser.Scene {
 
     platforms = this.physics.add.staticGroup();
 
-    platforms.create(400, 568, "ground").setScale(2).refreshBody();
+    platforms.create(400, 610, "ground").setScale(2).refreshBody();
 
-    // platforms.create(600, 400, 'ground');
-    // platforms.create(50, 250, 'ground');
-    // platforms.create(750, 220, 'ground');
+    platforms.create(600, 400, 'ground').setScale(0.5).refreshBody();
+    platforms.create(150, 250, 'ground').setScale(0.5).refreshBody();
+    platforms.create(750, 220, 'ground').setScale(0.5).refreshBody();
 
-    movingPlatform = this.physics.add.image(400, 400, "ground");
+    // movingPlatform = this.physics.add.image(400, 400, "ground");
 
-    movingPlatform.setImmovable(true);
-    movingPlatform.body.allowGravity = false;
-    movingPlatform.setVelocityX(50);
+    // movingPlatform.setImmovable(true);
+    // movingPlatform.body.allowGravity = false;
+    // movingPlatform.setVelocityX(50);
 
     player = this.physics.add.sprite(100, 450, "dude");
 
@@ -79,9 +81,9 @@ class playPlatformerGame extends Phaser.Scene {
     });
 
     this.physics.add.collider(player, platforms);
-    this.physics.add.collider(player, movingPlatform);
+    // this.physics.add.collider(player, movingPlatform);
     this.physics.add.collider(stars, platforms);
-    this.physics.add.collider(stars, movingPlatform);
+    // this.physics.add.collider(stars, movingPlatform);
 
     this.physics.add.overlap(player, stars, this.collectStar, null, this);
   }
@@ -105,11 +107,11 @@ class playPlatformerGame extends Phaser.Scene {
       player.setVelocityY(-330);
     }
 
-    if (movingPlatform.x >= 500) {
-      movingPlatform.setVelocityX(-50);
-    } else if (movingPlatform.x <= 300) {
-      movingPlatform.setVelocityX(50);
-    }
+    // if (movingPlatform.x >= 500) {
+    //   movingPlatform.setVelocityX(-50);
+    // } else if (movingPlatform.x <= 300) {
+    //   movingPlatform.setVelocityX(50);
+    // }
   }
 }
 
