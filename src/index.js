@@ -6,8 +6,10 @@ import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
 
 // import scenes
+import PreloadScene from './phaser/preload-scene';
 import playGame from './phaser/test-scene';
 import playPlatformerGame from './phaser/basic-platform';
+import playDinoGame from './phaser/dino-game';
 
 const config = {
   type: Phaser.AUTO,
@@ -20,7 +22,7 @@ const config = {
       debug: false
     },
   },
-  scene: playPlatformerGame,
+  scene: [PreloadScene, playDinoGame]
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
