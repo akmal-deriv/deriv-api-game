@@ -11,6 +11,11 @@ import playGame from './phaser/test-scene';
 import playPlatformerGame from './phaser/basic-platform';
 import playDinoGame from './phaser/dino-game';
 
+// import API data
+import generateTickData from './api/tick-stream';
+
+generateTickData();
+
 const config = {
   type: Phaser.AUTO,
   width: 1000,
