@@ -13,8 +13,9 @@ import playDinoGame from './phaser/dino-game';
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1000,
+  height: 340,
+  transparent: true,
   physics: {
     default: "arcade",
     arcade: {
