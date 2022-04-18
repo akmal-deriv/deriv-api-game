@@ -6,13 +6,16 @@ import App from './components/app/App';
 import reportWebVitals from './reportWebVitals';
 
 // import scenes
+import PreloadScene from './phaser/preload-scene';
 import playGame from './phaser/test-scene';
 import playPlatformerGame from './phaser/basic-platform';
+import playDinoGame from './phaser/dino-game';
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  width: 1000,
+  height: 340,
+  transparent: true,
   physics: {
     default: "arcade",
     arcade: {
@@ -20,7 +23,7 @@ const config = {
       debug: false
     },
   },
-  scene: playPlatformerGame,
+  scene: [PreloadScene, playDinoGame]
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
