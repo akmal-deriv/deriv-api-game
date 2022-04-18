@@ -3,7 +3,7 @@ const DerivAPIBasic = require('@deriv/deriv-api/dist/DerivAPIBasic');
 const api = new DerivAPIBasic({ endpoint: 'frontend.binaryws.com', lang: 'EN', app_id: 31635 });
 const token = localStorage.getItem('token');
 
-export default async function generateTickData() {
+export default async function setEnemyLevelSession() {
     try {
         await api.authorize(token);
         let old_data;

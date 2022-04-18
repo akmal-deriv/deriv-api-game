@@ -12,9 +12,9 @@ import playPlatformerGame from './phaser/basic-platform';
 import playDinoGame from './phaser/dino-game';
 
 // import API data
-import generateTickData from './api/tick-stream';
+import setEnemyLevelSession from './api/tick-stream';
 
-generateTickData();
+setEnemyLevelSession();
 
 const config = {
   type: Phaser.AUTO,
