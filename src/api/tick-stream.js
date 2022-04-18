@@ -25,7 +25,7 @@ export default async function generateTickData() {
             old_data = parseInt(sessionStorage.getItem('previous_tick'));
         }, 3500);
     } catch (response) {
-        console.log(response.error.message);
+        console.error(response.error.message);
         sessionStorage.setItem('play_enabled', false);
     }
 }
