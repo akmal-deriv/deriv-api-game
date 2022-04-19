@@ -12,6 +12,13 @@ class PreloadScene extends Phaser.Scene {
     this.load.audio('hit', 'assets/sounds/hit.m4a');
     this.load.audio('reach', 'assets/sounds/reach.m4a');
 
+    this.load.image('background1', 'assets/images/valley_background.png');
+    this.load.image('background2', 'assets/images/battleground1.png');
+    this.load.image('background3', 'assets/images/battleground3.png');
+    this.load.image('background4', 'assets/images/battleground4.png');
+    this.load.image('background5', 'assets/images/postapocalypse2.png');
+    this.load.image('background6', 'assets/images/postapocalypse1.png');
+
     this.load.image('ground', 'assets/images/ground.png');
     this.load.image('dino-idle', 'assets/images/dino-idle.png');
     this.load.image('dino-hurt', 'assets/images/dino-hurt.png');
