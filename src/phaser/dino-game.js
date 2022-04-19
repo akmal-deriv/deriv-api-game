@@ -20,7 +20,7 @@ class DinoGame extends Phaser.Scene {
       .setOrigin(0, 1);
 
 
-      this.obsticles = this.physics.add.group({ allowGravity: false });
+    this.obsticles = this.physics.add.group({ allowGravity: false });
 
 
     this.createControl();
