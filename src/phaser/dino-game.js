@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import EventDispatcher from "../util/eventDispatcher";
 
 const backgrounds = [
   'background1',
@@ -8,12 +9,17 @@ const backgrounds = [
   'background5',
   'background6',
 ]
+let dynamic_background;
+let background;
+let background_index = 0;
 class DinoGame extends Phaser.Scene {
   constructor() {
     super("PlayScene");
+    this.new_background = backgrounds[0];
   }
 
   create() {
+    this.emitter = EventDispatcher.getInstance();
     const { height, width } = this.game.config;
     this.gameSpeed = 10;
     this.isGameRunning = false;
@@ -28,6 +34,15 @@ class DinoGame extends Phaser.Scene {
       .sprite(0, 10)
       .setOrigin(0, 1)
       .setImmovable();
+    
+    this.background = this.add
+      .tileSprite(0, height, 1280, 800, backgrounds[0])
+      .setOrigin(0, 1);
+
+    this.dynamic_background = this.add
+      .tileSprite(0, height, 1280, 800, backgrounds[1])
+      .setOrigin(0, 1);
+    this.dynamic_background.alpha = 0;
 
     this.ground = this.add
       .tileSprite(0, height, 88, 26, "ground")
@@ -57,7 +72,6 @@ class DinoGame extends Phaser.Scene {
       })
       .setOrigin(1, 0)
       .setAlpha(0);
-
     this.environment = this.add.group();
     this.environment.addMultiple([
       this.add.image(width / 2, 170, "cloud"),
@@ -80,6 +94,71 @@ class DinoGame extends Phaser.Scene {
     this.initColliders();
     this.handleInputs();
     this.handleScore();
+    this.changeBackgroundListener();
+    this.setListeners(this);
+  }
+
+  setListeners(scene) {
+    this.emitter.on('CHANGE_BACKGROUND', () => this.changeBackgroundEvent(scene));
+  }
+
+  changeBackgroundListener() {
+    setInterval(() => {
+        if (this.score >= 0 && this.score < 200 && this.new_background !== backgrounds[0]) {
+          this.new_background = backgrounds[0];
+          this.emitter.emit('CHANGE_BACKGROUND');
+        }
+        if (this.score >= 200 && this.score < 400 && this.new_background !== backgrounds[1]) {
+          this.new_background = backgrounds[1];
+          this.emitter.emit('CHANGE_BACKGROUND');
+        }
+        if (this.score >= 400 && this.score < 600 && this.new_background !== backgrounds[2]) {
+          this.new_background = backgrounds[2];
+          this.emitter.emit('CHANGE_BACKGROUND');
+        }
+        if (this.score >= 600 && this.score < 800 && this.new_background !== backgrounds[3]) {
+          this.new_background = backgrounds[3];
+          this.emitter.emit('CHANGE_BACKGROUND');
+        }
+        if (this.score >= 800 && this.score < 1000 && this.new_background !== backgrounds[4]) {
+          this.new_background = backgrounds[4];
+          this.emitter.emit('CHANGE_BACKGROUND');
+        }
+        if (this.score >= 1000 && this.score < 1200 && this.new_background !== backgrounds[5]) {
+           this.new_background = backgrounds[5];
+          this.emitter.emit('CHANGE_BACKGROUND');
+        }
+    }, 1000)
+  }
+
+  changeBackgroundEvent(scene) {
+    // create a function that tweens the correct background.
+    console.log(scene.tweens);
+    const background_to_tween = [scene.dynamic_background, scene.background]
+    if (background_index === 0) {
+      background_to_tween[background_index].setTexture(scene.new_background);
+      scene.tweens.add({
+        targets: background_to_tween[background_index],
+        alpha: { value: 1, duration: 2000, ease: 'Power1'}
+      });
+      setTimeout(() => {
+        scene.tweens.killAll();
+        // background_to_tween[1].alpha = 0;
+        background_index = 1;
+      }, 2000);
+    }
+    if (background_index === 1) {
+      background_to_tween[background_index].setTexture(scene.new_background);
+      scene.tweens.add({
+        targets: background_to_tween[0],
+        alpha: { value: 0, duration: 2000, ease: 'Power1'}
+      });
+      setTimeout(() => {
+        scene.tweens.killAll();
+        // background_to_tween[0].alpha = 0;
+        background_index = 0;
+      }, 2000);
+    }
   }
 
   initColliders() {
@@ -297,8 +376,9 @@ class DinoGame extends Phaser.Scene {
     if (!this.isGameRunning) {
       return;
     }
-
     this.ground.tilePositionX += this.gameSpeed;
+    this.background.tilePositionX += this.gameSpeed * 0.25;
+    this.dynamic_background.tilePositionX += this.gameSpeed * 0.25;
     Phaser.Actions.IncX(this.obsticles.getChildren(), -this.gameSpeed);
     Phaser.Actions.IncX(this.environment.getChildren(), -0.5);
     this.respawnTime += delta * this.gameSpeed * 0.08;
