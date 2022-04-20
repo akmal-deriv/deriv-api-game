@@ -266,8 +266,79 @@ class DinoGame extends Phaser.Scene {
 
             obsticle.body.offset.y = +10;
         }
+        this.scoreText.setText(score.join(""));
+      },
+    });
+  }
 
-        obsticle.setImmovable();
+  handleInputs() {
+    this.restart.on("pointerdown", () => {
+      this.dino.setVelocityY(0);
+      this.dino.body.height = 92;
+      this.dino.body.offset.y = 0;
+      this.physics.resume();
+      this.obsticles.clear(true, true);
+      this.isGameRunning = true;
+      this.gameOverScreen.setAlpha(0);
+      this.anims.resumeAll();
+    });
+
+    this.input.keyboard.on("keydown-SPACE", () => {
+      if (!this.dino.body.onFloor() || this.dino.body.velocity.x > 0) {
+        return;
+      }
+
+      this.jumpSound.play();
+      this.dino.body.height = 92;
+      this.dino.body.offset.y = 0;
+      this.dino.setVelocityY(-1600);
+      this.dino.setTexture("dino", 0);
+    });
+
+    this.input.keyboard.on("keydown-DOWN", () => {
+      if (!this.dino.body.onFloor() || !this.isGameRunning) {
+        return;
+      }
+
+      this.dino.body.height = 58;
+      this.dino.body.offset.y = 34;
+    });
+
+    this.input.keyboard.on("keyup-DOWN", () => {
+      if (this.score !== 0 && !this.isGameRunning) {
+        return;
+      }
+
+      this.dino.body.height = 92;
+      this.dino.body.offset.y = 0;
+    });
+  }
+
+  placeObsticle(enemy_level) {
+    const distance = Phaser.Math.Between(600, 900);
+
+    let obsticle;
+    if (enemy_level > 6) {
+      const enemyHeight = [20, 50];
+      obsticle = this.obsticles
+        .create(
+          this.game.config.width + distance,
+          this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)],
+          `enemy-bird`
+        )
+        .setOrigin(0, 1);
+      obsticle.play("enemy-dino-fly", 1);
+      obsticle.body.height = obsticle.body.height / 1.5;
+    } else {
+      obsticle = this.obsticles
+        .create(
+          this.game.config.width + distance,
+          this.game.config.height,
+          `obsticle-${enemy_level}`
+        )
+        .setOrigin(0, 1);
+
+      obsticle.body.offset.y = +10;
     }
 
     update(time, delta) {
@@ -283,12 +354,15 @@ class DinoGame extends Phaser.Scene {
             this.placeObsticle();
             this.respawnTime = 0;
         }
-
-        this.obsticles.getChildren().forEach(obsticle => {
-            if (obsticle.getBounds().right < 0) {
-                this.obsticles.killAndHide(obsticle);
-            }
-        });
+    this.ground.tilePositionX += this.gameSpeed;
+    Phaser.Actions.IncX(this.obsticles.getChildren(), -this.gameSpeed);
+    Phaser.Actions.IncX(this.environment.getChildren(), -0.5);
+    this.respawnTime += delta * this.gameSpeed * 0.08;
+    if (this.respawnTime >= 1500) {
+      const enemy_level = parseInt(sessionStorage.getItem('enemy_level')) ?? 0;
+      this.placeObsticle(enemy_level);
+      this.respawnTime = 0;
+    }
 
         this.environment.getChildren().forEach(env => {
             if (env.getBounds().right < 0) {
