@@ -50,13 +50,13 @@ class PreloadScene extends Phaser.Scene {
       frameHeight: 32,
     });
 
-    this.load.image("obsticle-0", "assets/images/cactuses_small_3.png");
-    this.load.image("obsticle-1", "assets/images/cactuses_small_1.png");
-    this.load.image("obsticle-2", "assets/images/cactuses_small_2.png");
-    this.load.image("obsticle-3", "assets/images/cactuses_small_3.png");
-    this.load.image("obsticle-4", "assets/images/cactuses_big_1.png");
-    this.load.image("obsticle-5", "assets/images/cactuses_big_2.png");
-    this.load.image("obsticle-6", "assets/images/cactuses_big_3.png");
+    this.load.image("obsticle-0", "assets/images/litecoin.png");
+    this.load.image("obsticle-1", "assets/images/usdcoin.png");
+    this.load.image("obsticle-2", "assets/images/tethererc20.png");
+    this.load.image("obsticle-3", "assets/images/litecoin.png");
+    this.load.image("obsticle-4", "assets/images/ethereum.png");
+    this.load.image("obsticle-5", "assets/images/bitcoin.png");
+    this.load.image("obsticle-6", "assets/images/tether.png");
 
     this.load.audio("jump", "assets/sounds/jump.m4a");
     this.load.audio("hit", "assets/sounds/hit.m4a");
