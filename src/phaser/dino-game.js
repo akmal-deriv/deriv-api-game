@@ -67,7 +67,6 @@ class DinoGame extends Phaser.Scene {
 
     this.obsticles = this.physics.add.group({ allowGravity: false });
 
-    this.createControl();
     this.initAnims();
     this.initStartTrigger();
     this.initColliders();
