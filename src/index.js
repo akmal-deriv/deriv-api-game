@@ -7,9 +7,12 @@ import reportWebVitals from './reportWebVitals';
 
 // import scenes
 import PreloadScene from './phaser/preload-scene';
-import playGame from './phaser/test-scene';
-import playPlatformerGame from './phaser/basic-platform';
 import playDinoGame from './phaser/dino-game';
+
+// import API data
+import setEnemyLevelSession from './api/tick-stream';
+
+setEnemyLevelSession();
 
 const config = {
   type: Phaser.AUTO,
@@ -27,6 +30,7 @@ const config = {
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);
 root.render(
   <React.StrictMode>
