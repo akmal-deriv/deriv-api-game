@@ -32,7 +32,7 @@ class DinoGame extends Phaser.Scene {
       .setOrigin(0, 1);
 
     this.scoreText = this.add
-      .text(width, 0, "00000", {
+      .text(width - 50, 0, "00000", {
         fill: "#535353",
         font: "900 35px Courier",
         resolution: 5,
@@ -71,6 +71,41 @@ class DinoGame extends Phaser.Scene {
     this.initColliders();
     this.handleInputs();
     this.handleScore();
+
+    var button = this.add.image(width, 0, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
+    button.on('pointerup', function () {
+
+      if (this.scale.isFullscreen)
+      {
+          button.setFrame(0);
+
+          this.scale.stopFullscreen();
+      }
+      else
+      {
+          button.setFrame(1);
+
+          this.scale.startFullscreen();
+      }
+
+  }, this);
+
+  var FKey = this.input.keyboard.addKey('F');
+
+        FKey.on('down', function () {
+
+            if (this.scale.isFullscreen)
+            {
+                button.setFrame(0);
+                this.scale.stopFullscreen();
+            }
+            else
+            {
+                button.setFrame(1);
+                this.scale.startFullscreen();
+            }
+
+        }, this);
   }
 
   initColliders() {
