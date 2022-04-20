@@ -45,7 +45,7 @@ class DinoGame extends Phaser.Scene {
     this.dynamic_background.alpha = 0;
 
     this.ground = this.add
-      .tileSprite(0, height, 88, 26, "ground")
+      .tileSprite(0, height*1.10, 1280, 800, "ground")
       .setOrigin(0, 1);
     this.dino = this.physics.add
       .sprite(0, height, "dino-idle")
