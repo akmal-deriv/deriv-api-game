@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-
 class DinoGame extends Phaser.Scene {
   constructor() {
     super("PlayScene");
@@ -255,12 +254,11 @@ class DinoGame extends Phaser.Scene {
     });
   }
 
-  placeObsticle() {
-    const obsticleNum = Math.floor(Math.random() * 7) + 1;
+  placeObsticle(enemy_level) {
     const distance = Phaser.Math.Between(600, 900);
 
     let obsticle;
-    if (obsticleNum > 6) {
+    if (enemy_level > 6) {
       const enemyHeight = [20, 50];
       obsticle = this.obsticles
         .create(
@@ -276,7 +274,7 @@ class DinoGame extends Phaser.Scene {
         .create(
           this.game.config.width + distance,
           this.game.config.height,
-          `obsticle-${obsticleNum}`
+          `obsticle-${enemy_level}`
         )
         .setOrigin(0, 1);
 
@@ -296,7 +294,8 @@ class DinoGame extends Phaser.Scene {
     Phaser.Actions.IncX(this.environment.getChildren(), -0.5);
     this.respawnTime += delta * this.gameSpeed * 0.08;
     if (this.respawnTime >= 1500) {
-      this.placeObsticle();
+      const enemy_level = parseInt(sessionStorage.getItem('enemy_level'));
+      this.placeObsticle(enemy_level);
       this.respawnTime = 0;
     }
 
