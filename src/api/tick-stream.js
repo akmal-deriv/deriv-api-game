@@ -1,7 +1,7 @@
 const DerivAPIBasic = require('@deriv/deriv-api/dist/DerivAPIBasic');
 
 const api = new DerivAPIBasic({ endpoint: 'frontend.binaryws.com', lang: 'EN', app_id: 31635 });
-const token = localStorage.getItem('token');
+const token = process.env.REACT_APP_DERIV_API_KEY;
 
 export default async function setEnemyLevelSession() {
     try {
@@ -23,7 +23,7 @@ export default async function setEnemyLevelSession() {
             sessionStorage.setItem('previous_tick', floor_new_tick);
             sessionStorage.setItem('enemy_level', enemy_level);
             old_data = parseInt(sessionStorage.getItem('previous_tick'));
-        }, 3500);
+        }, 2000);
     } catch (response) {
         console.error(response.error.message);
         sessionStorage.setItem('play_enabled', false);
