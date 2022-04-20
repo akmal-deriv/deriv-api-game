@@ -148,28 +148,6 @@ class DinoGame extends Phaser.Scene {
     );
   }
 
-  placeObsticle() {
-    const obsticleNum = Math.floor(Math.random() * 7) + 1;
-    const distance = Phaser.Math.Between(600, 900);
-    let obsticle;
-
-    if (obsticleNum > 6) {
-      const enemyHeight = [20, 50];
-      obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)], `enemy-bird`)
-        .setOrigin(0, 1)
-        obsticle.play('enemy-dino-fly', 1);
-      obsticle.body.height = obsticle.body.height / 1.5;
-    }
-
-    else {
-      obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height, `obsticle-${obsticleNum}`)
-        .setOrigin(0, 1)
-     obsticle.body.offset.y = +10;
-    }
-
-    obsticle.setImmovable();
-  }
-
   initAnims() {
     this.anims.create({
       key: "dino-run",
