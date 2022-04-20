@@ -20,6 +20,7 @@ class DinoGame extends Phaser.Scene {
       .sprite(0, 10)
       .setOrigin(0, 1)
       .setImmovable();
+
     this.ground = this.add
       .tileSprite(0, height, 88, 26, "ground")
       .setOrigin(0, 1);
@@ -66,6 +67,7 @@ class DinoGame extends Phaser.Scene {
 
     this.obsticles = this.physics.add.group({ allowGravity: false });
 
+    this.createControl();
     this.initAnims();
     this.initStartTrigger();
     this.initColliders();
@@ -145,6 +147,28 @@ class DinoGame extends Phaser.Scene {
       null,
       this
     );
+  }
+
+  placeObsticle() {
+    const obsticleNum = Math.floor(Math.random() * 7) + 1;
+    const distance = Phaser.Math.Between(600, 900);
+    let obsticle;
+
+    if (obsticleNum > 6) {
+      const enemyHeight = [20, 50];
+      obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)], `enemy-bird`)
+        .setOrigin(0, 1)
+        obsticle.play('enemy-dino-fly', 1);
+      obsticle.body.height = obsticle.body.height / 1.5;
+    }
+
+    else {
+      obsticle = this.obsticles.create(this.game.config.width + distance, this.game.config.height, `obsticle-${obsticleNum}`)
+        .setOrigin(0, 1)
+     obsticle.body.offset.y = +10;
+    }
+
+    obsticle.setImmovable();
   }
 
   initAnims() {
@@ -293,7 +317,6 @@ class DinoGame extends Phaser.Scene {
     this.ground.tilePositionX += this.gameSpeed;
     Phaser.Actions.IncX(this.obsticles.getChildren(), -this.gameSpeed);
     Phaser.Actions.IncX(this.environment.getChildren(), -0.5);
-
     this.respawnTime += delta * this.gameSpeed * 0.08;
     if (this.respawnTime >= 1500) {
       this.placeObsticle();
