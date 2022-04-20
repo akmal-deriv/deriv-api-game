@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 
 // import scenes
 import PreloadScene from './phaser/preload-scene';
+import TitleScene from './phaser/title-scene';
 import playDinoGame from './phaser/dino-game';
 
 // import API data
@@ -26,12 +27,13 @@ const config = {
       debug: false
     },
   },
-  scene: [PreloadScene, playDinoGame]
+  scene: [PreloadScene, TitleScene, playDinoGame]
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);
+
 root.render(
   <React.StrictMode>
     <App />
