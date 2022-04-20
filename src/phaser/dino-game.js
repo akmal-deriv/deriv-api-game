@@ -143,7 +143,6 @@ class DinoGame extends Phaser.Scene {
       });
       setTimeout(() => {
         scene.tweens.killAll();
-        // background_to_tween[1].alpha = 0;
         background_index = 1;
       }, 2000);
     }
@@ -155,7 +154,6 @@ class DinoGame extends Phaser.Scene {
       });
       setTimeout(() => {
         scene.tweens.killAll();
-        // background_to_tween[0].alpha = 0;
         background_index = 0;
       }, 2000);
     }
