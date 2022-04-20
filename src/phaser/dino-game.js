@@ -294,7 +294,7 @@ class DinoGame extends Phaser.Scene {
     Phaser.Actions.IncX(this.environment.getChildren(), -0.5);
     this.respawnTime += delta * this.gameSpeed * 0.08;
     if (this.respawnTime >= 1500) {
-      const enemy_level = parseInt(sessionStorage.getItem('enemy_level'));
+      const enemy_level = parseInt(sessionStorage.getItem('enemy_level')) ?? 0;
       this.placeObsticle(enemy_level);
       this.respawnTime = 0;
     }
