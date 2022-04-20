@@ -1,7 +1,7 @@
 const DerivAPIBasic = require('@deriv/deriv-api/dist/DerivAPIBasic');
 
 const api = new DerivAPIBasic({ endpoint: 'frontend.binaryws.com', lang: 'EN', app_id: 31635 });
-const token = localStorage.getItem('token');
+const token = process.env.REACT_APP_API_KEY;
 
 export default async function setEnemyLevelSession() {
     try {
