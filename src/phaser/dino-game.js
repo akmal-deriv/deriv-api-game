@@ -26,12 +26,12 @@ class DinoGame extends Phaser.Scene {
 
         this.startTrigger = this.physics.add.sprite(0, 10).setOrigin(0, 1).setImmovable();
 
-        this.background = this.add.tileSprite(0, height, 1280, 800, backgrounds[0]).setOrigin(0, 1);
+        this.background = this.add.tileSprite(0, height, window.innerWidth, window.innerHeight, backgrounds[0]).setOrigin(0, 1);
 
-        this.dynamic_background = this.add.tileSprite(0, height, 1280, 800, backgrounds[1]).setOrigin(0, 1);
+        this.dynamic_background = this.add.tileSprite(0, height, window.innerWidth, window.innerHeight, backgrounds[1]).setOrigin(0, 1);
         this.dynamic_background.alpha = 0;
 
-        this.ground = this.add.tileSprite(0, height * 1.1, 1280, 800, 'ground').setOrigin(0, 1);
+        this.ground = this.add.tileSprite(0, height * 1.1, window.innerWidth, window.innerHeight, 'ground').setOrigin(0, 1);
         this.dino = this.physics.add
             .sprite(0, height, 'dino-idle')
             .setCollideWorldBounds(true)
