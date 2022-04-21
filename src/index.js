@@ -20,8 +20,8 @@ const config = {
     transparent: true,
     scale: {
         mode: Phaser.Scale.FIT,
-        width: 1280,
-        height: 500,
+        width: window.innerWidth,
+        height: window.innerHeight,
     },
     physics: {
         default: 'arcade',
