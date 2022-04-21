@@ -41,7 +41,7 @@ class DinoGame extends Phaser.Scene {
 
         this.scoreText = this.add
             .text(width - 50, 0, '00000', {
-                fill: '#535353',
+                fill: '#000000',
                 font: '900 35px Courier',
                 resolution: 5,
             })
@@ -50,7 +50,7 @@ class DinoGame extends Phaser.Scene {
 
         this.highScoreText = this.add
             .text(0, 0, '00000', {
-                fill: '#535353',
+                fill: '#FF0000',
                 font: '900 35px Courier',
                 resolution: 5,
             })
