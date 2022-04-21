@@ -18,8 +18,8 @@ export default async function setEnemyLevelSession() {
             const new_tick = await api.ticks('R_100');
             const floor_new_tick = Math.floor(new_tick.tick.ask);
             const pre_calc_enemy_level = parseInt(old_data) - floor_new_tick;
-            const enemy_level =  pre_calc_enemy_level < 0 ? -1 * pre_calc_enemy_level : pre_calc_enemy_level;
-            
+            const enemy_level = pre_calc_enemy_level < 0 ? -1 * pre_calc_enemy_level : pre_calc_enemy_level;
+
             sessionStorage.setItem('previous_tick', floor_new_tick);
             sessionStorage.setItem('enemy_level', enemy_level);
             old_data = parseInt(sessionStorage.getItem('previous_tick'));

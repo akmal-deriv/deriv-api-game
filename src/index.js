@@ -16,18 +16,18 @@ import setEnemyLevelSession from './api/tick-stream';
 setEnemyLevelSession();
 
 const config = {
-  type: Phaser.AUTO,
-  width: 1280,
-  height: 500,
-  transparent: true,
-  physics: {
-    default: "arcade",
-    arcade: {
-      gravity: { y: 300 },
-      debug: false
+    type: Phaser.AUTO,
+    width: 1280,
+    height: 500,
+    transparent: true,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 300 },
+            debug: false,
+        },
     },
-  },
-  scene: [PreloadScene, TitleScene, playDinoGame]
+    scene: [PreloadScene, TitleScene, playDinoGame],
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -35,9 +35,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 const game = new Phaser.Game(config);
 
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
