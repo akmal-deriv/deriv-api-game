@@ -2,9 +2,10 @@ import Phaser from 'phaser';
 import EventDispatcher from '../util/eventDispatcher';
 
 const backgrounds = ['background1', 'background2', 'background3', 'background4', 'background5', 'background6'];
-let dynamic_background;
-let background;
+// eslint-disable-next-line no-unused-vars
+let dynamic_background, background;
 let background_index = 0;
+
 class DinoGame extends Phaser.Scene {
     constructor() {
         super('PlayScene');
@@ -152,7 +153,6 @@ class DinoGame extends Phaser.Scene {
 
     changeBackgroundEvent(scene) {
         // create a function that tweens the correct background.
-        console.log(scene.tweens);
         const background_to_tween = [scene.dynamic_background, scene.background];
         if (background_index === 0) {
             background_to_tween[background_index].setTexture(scene.new_background);
