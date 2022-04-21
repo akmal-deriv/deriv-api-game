@@ -379,7 +379,7 @@ class DinoGame extends Phaser.Scene {
                     `doge-coin`
                 )
                 .setOrigin(0, 1);
-            obsticle.play('enemy-dino-fly', 1);
+            obsticle.play('doge-coin-fly', 1);
             obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
