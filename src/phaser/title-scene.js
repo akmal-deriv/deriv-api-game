@@ -14,6 +14,11 @@ class TitleScene extends Phaser.Scene {
         const option_2 = this.add.bitmapText(80, 140, 'carrier_command', 'LEVELS', 34);
         const option_3 = this.add.bitmapText(80, 195, 'carrier_command', 'OPtiONS', 34);
         const option_4 = this.add.bitmapText(80, 250, 'carrier_command', 'EXIT', 34);
+        const fullscreen_btn = this.add
+            .image(this.game.config.width - 5, 5, 'fullscreen', 0)
+            .setOrigin(1, 0)
+            .setInteractive();
+        const f_key = this.input.keyboard.addKey('F');
 
         background.setOrigin(0, 0);
         background.setDisplaySize(this.game.config.width, this.game.config.height);
@@ -31,6 +36,36 @@ class TitleScene extends Phaser.Scene {
         option_4.setInteractive({ useHandCursor: true });
         option_4.on('pointerdown', () => this.exitGame());
         option_4.tint = 0xff3333;
+
+        fullscreen_btn.on(
+            'pointerup',
+            function () {
+                if (this.scale.isFullscreen) {
+                    fullscreen_btn.setFrame(0);
+
+                    this.scale.stopFullscreen();
+                } else {
+                    fullscreen_btn.setFrame(1);
+
+                    this.scale.startFullscreen();
+                }
+            },
+            this
+        );
+
+        f_key.on(
+            'down',
+            function () {
+                if (this.scale.isFullscreen) {
+                    fullscreen_btn.setFrame(0);
+                    this.scale.stopFullscreen();
+                } else {
+                    fullscreen_btn.setFrame(1);
+                    this.scale.startFullscreen();
+                }
+            },
+            this
+        );
     }
 
     startGame() {
