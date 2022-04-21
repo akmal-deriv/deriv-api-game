@@ -363,8 +363,8 @@ class DinoGame extends Phaser.Scene {
                     `enemy-bird`
                 )
                 .setOrigin(0, 1);
-            obsticle.play('enemy-dino-fly', 1);
-            obsticle.body.height = obsticle.body.height / 1.5;
+                obsticle.play('enemy-dino-fly', 1);
+                obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
                 .create(this.game.config.width + distance, this.game.config.height, `obsticle-${enemy_level || Math.floor(Math.random() * 7)}`)
