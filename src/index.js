@@ -17,9 +17,12 @@ setEnemyLevelSession();
 
 const config = {
     type: Phaser.AUTO,
-    width: 1280,
-    height: 500,
     transparent: true,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        width: 1280,
+        height: 500,
+    },
     physics: {
         default: 'arcade',
         arcade: {

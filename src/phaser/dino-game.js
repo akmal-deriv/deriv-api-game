@@ -12,8 +12,9 @@ class DinoGame extends Phaser.Scene {
     }
 
     create() {
-        this.emitter = EventDispatcher.getInstance();
         const { height, width } = this.game.config;
+
+        this.emitter = EventDispatcher.getInstance();
         this.gameSpeed = 10;
         this.isGameRunning = false;
         this.respawnTime = 0;
@@ -71,16 +72,21 @@ class DinoGame extends Phaser.Scene {
 
         this.obsticles = this.physics.add.group({ allowGravity: false });
 
-        let button = this.add.image(width, 0, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
-        button.on(
+        const fullscreen_btn = this.add
+            .image(width - 5, 3, 'fullscreen', 0)
+            .setOrigin(1, 0)
+            .setInteractive();
+        const f_key = this.input.keyboard.addKey('F');
+
+        fullscreen_btn.on(
             'pointerup',
             function () {
                 if (this.scale.isFullscreen) {
-                    button.setFrame(0);
+                    fullscreen_btn.setFrame(0);
 
                     this.scale.stopFullscreen();
                 } else {
-                    button.setFrame(1);
+                    fullscreen_btn.setFrame(1);
 
                     this.scale.startFullscreen();
                 }
@@ -88,16 +94,14 @@ class DinoGame extends Phaser.Scene {
             this
         );
 
-        let FKey = this.input.keyboard.addKey('F');
-
-        FKey.on(
+        f_key.on(
             'down',
             function () {
                 if (this.scale.isFullscreen) {
-                    button.setFrame(0);
+                    fullscreen_btn.setFrame(0);
                     this.scale.stopFullscreen();
                 } else {
-                    button.setFrame(1);
+                    fullscreen_btn.setFrame(1);
                     this.scale.startFullscreen();
                 }
             },
@@ -307,6 +311,18 @@ class DinoGame extends Phaser.Scene {
         });
     }
 
+    jump() {
+        if (!this.dino.body.onFloor() || this.dino.body.velocity.x > 0) {
+            return;
+        }
+
+        this.jumpSound.play();
+        this.dino.body.height = 92;
+        this.dino.body.offset.y = 0;
+        this.dino.setVelocityY(-1600);
+        this.dino.setTexture('dino', 0);
+    }
+
     handleInputs() {
         this.restart.on('pointerdown', () => {
             this.dino.setVelocityY(0);
@@ -320,15 +336,15 @@ class DinoGame extends Phaser.Scene {
         });
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            if (!this.dino.body.onFloor() || this.dino.body.velocity.x > 0) {
-                return;
-            }
+            this.jump();
+        });
 
-            this.jumpSound.play();
-            this.dino.body.height = 92;
-            this.dino.body.offset.y = 0;
-            this.dino.setVelocityY(-1600);
-            this.dino.setTexture('dino', 0);
+        this.input.keyboard.on('keydown-UP', () => {
+            this.jump();
+        });
+
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.switch('TitleScene');
         });
 
         this.input.keyboard.on('keydown-DOWN', () => {
@@ -367,7 +383,11 @@ class DinoGame extends Phaser.Scene {
             obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
-                .create(this.game.config.width + distance, this.game.config.height, `obsticle-${enemy_level || Math.floor(Math.random() * 7)}`)
+                .create(
+                    this.game.config.width + distance,
+                    this.game.config.height,
+                    `obsticle-${enemy_level || Math.floor(Math.random() * 7)}`
+                )
                 .setOrigin(0, 1);
 
             obsticle.body.offset.y = +10;
