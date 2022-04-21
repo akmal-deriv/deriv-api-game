@@ -262,8 +262,8 @@ class DinoGame extends Phaser.Scene {
         });
 
         this.anims.create({
-            key: 'enemy-dino-fly',
-            frames: this.anims.generateFrameNumbers('enemy-bird', {
+            key: 'dodge-coin-fly',
+            frames: this.anims.generateFrameNumbers('dodge-coin', {
                 start: 0,
                 end: 1,
             }),
@@ -360,10 +360,10 @@ class DinoGame extends Phaser.Scene {
                 .create(
                     this.game.config.width + distance,
                     this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)],
-                    `enemy-bird`
+                    `dodge-coin`
                 )
                 .setOrigin(0, 1);
-            obsticle.play('enemy-dino-fly', 1);
+            obsticle.play('dodge-coin-fly', 1);
             obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
