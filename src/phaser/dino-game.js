@@ -27,12 +27,18 @@ class DinoGame extends Phaser.Scene {
 
         this.startTrigger = this.physics.add.sprite(0, 10).setOrigin(0, 1).setImmovable();
 
-        this.background = this.add.tileSprite(0, height, 1280, 800, backgrounds[0]).setOrigin(0, 1);
+        this.background = this.add
+            .tileSprite(0, height, window.innerWidth, window.innerHeight, backgrounds[0])
+            .setOrigin(0, 1);
 
-        this.dynamic_background = this.add.tileSprite(0, height, 1280, 800, backgrounds[1]).setOrigin(0, 1);
+        this.dynamic_background = this.add
+            .tileSprite(0, height, window.innerWidth, window.innerHeight, backgrounds[1])
+            .setOrigin(0, 1);
         this.dynamic_background.alpha = 0;
 
-        this.ground = this.add.tileSprite(0, height * 1.1, 1280, 800, 'ground').setOrigin(0, 1);
+        this.ground = this.add
+            .tileSprite(0, height * 1.1, window.innerWidth, window.innerHeight, 'ground')
+            .setOrigin(0, 1);
         this.dino = this.physics.add
             .sprite(0, height, 'dino-idle')
             .setCollideWorldBounds(true)
@@ -383,7 +389,11 @@ class DinoGame extends Phaser.Scene {
             obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
-                .create(this.game.config.width + distance, this.game.config.height, `enemy_coin_${enemy_level || Math.floor(Math.random() * 7)}`)
+                .create(
+                    this.game.config.width + distance,
+                    this.game.config.height,
+                    `enemy_coin_${enemy_level || Math.floor(Math.random() * 7)}`
+                )
                 .setOrigin(0, 1);
 
             obsticle.body.offset.y = +10;
