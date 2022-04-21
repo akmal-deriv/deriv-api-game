@@ -367,7 +367,7 @@ class DinoGame extends Phaser.Scene {
             obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
-                .create(this.game.config.width + distance, this.game.config.height, `obsticle-${enemy_level}`)
+                .create(this.game.config.width + distance, this.game.config.height, `obsticle-${enemy_level || Math.floor(Math.random() * 7)}`)
                 .setOrigin(0, 1);
 
             obsticle.body.offset.y = +10;
