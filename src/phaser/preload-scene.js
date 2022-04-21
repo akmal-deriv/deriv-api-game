@@ -47,7 +47,7 @@ class PreloadScene extends Phaser.Scene {
             frameHeight: 94,
         });
 
-        this.load.spritesheet('dodge-coin', 'assets/images/dodgecoin-fly.png', {
+        this.load.spritesheet('doge-coin', 'assets/images/enemy_dogecoin-fly.png', {
             frameWidth: 100,
             frameHeight: 100,
         });
