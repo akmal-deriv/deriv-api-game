@@ -17,8 +17,8 @@ setEnemyLevelSession();
 
 const config = {
   type: Phaser.AUTO,
-  width: 1000,
-  height: 340,
+  width: 1280,
+  height: 500,
   transparent: true,
   physics: {
     default: "arcade",
