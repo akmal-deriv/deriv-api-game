@@ -42,7 +42,7 @@ class DinoGame extends Phaser.Scene {
 
         this.scoreText = this.add
             .text(width - 50, 0, '00000', {
-                fill: '#535353',
+                fill: '#000000',
                 font: '900 35px Courier',
                 resolution: 5,
             })
@@ -51,7 +51,7 @@ class DinoGame extends Phaser.Scene {
 
         this.highScoreText = this.add
             .text(0, 0, '00000', {
-                fill: '#535353',
+                fill: '#FF0000',
                 font: '900 35px Courier',
                 resolution: 5,
             })
@@ -266,8 +266,8 @@ class DinoGame extends Phaser.Scene {
         });
 
         this.anims.create({
-            key: 'enemy-dino-fly',
-            frames: this.anims.generateFrameNumbers('enemy-bird', {
+            key: 'doge-coin-fly',
+            frames: this.anims.generateFrameNumbers('doge-coin', {
                 start: 0,
                 end: 1,
             }),
@@ -376,10 +376,10 @@ class DinoGame extends Phaser.Scene {
                 .create(
                     this.game.config.width + distance,
                     this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)],
-                    `enemy-bird`
+                    `doge-coin`
                 )
                 .setOrigin(0, 1);
-            obsticle.play('enemy-dino-fly', 1);
+            obsticle.play('doge-coin-fly', 1);
             obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
