@@ -56,22 +56,14 @@ class PreloadScene extends Phaser.Scene {
             frameWidth: 32,
             frameHeight: 32,
         });
-  
-        this.load.image('obsticle-0', 'assets/images/enemy_litecoin.png');
-        this.load.image('obsticle-1', 'assets/images/enemy_usdcoin.png');
-        this.load.image('obsticle-2', 'assets/images/enemy_tetherer.png');
-        this.load.image('obsticle-3', 'assets/images/enemy_litecoin.png');
-        this.load.image('obsticle-4', 'assets/images/enemy_ethereum.png');
-        this.load.image('obsticle-5', 'assets/images/enemy_bitcoin.png');
-        this.load.image('obsticle-6', 'assets/images/enemy_tether.png');
 
-        this.load.image('enemy_fly_coin-0', 'assets/images/enemy_coin_0.png');
-        this.load.image('enemy_fly_coin-1', 'assets/images/enemy_coin_1.png');
-        this.load.image('enemy_fly_coin-2', 'assets/images/enemy_coin_2.png');
-        this.load.image('enemy_fly_coin-3', 'assets/images/enemy_coin_3.png');
-        this.load.image('enemy_fly_coin-4', 'assets/images/enemy_coin_4.png');
-        this.load.image('enemy_fly_coin-5', 'assets/images/enemy_coin_5.png');
-        this.load.image('enemy_fly_coin-6', 'assets/images/enemy_coin_1.png');
+        this.load.image('enemy_coin_0', 'assets/images/enemy_litecoin.png');
+        this.load.image('enemy_coin_1', 'assets/images/enemy_usdcoin.png');
+        this.load.image('enemy_coin_2', 'assets/images/enemy_tetherer.png');
+        this.load.image('enemy_coin_3', 'assets/images/enemy_litecoin.png');
+        this.load.image('enemy_coin_4', 'assets/images/enemy_ethereum.png');
+        this.load.image('enemy_coin_5', 'assets/images/enemy_bitcoin.png');
+        this.load.image('enemy_coin_6', 'assets/images/enemy_tether.png');
 
         this.load.audio('jump', 'assets/sounds/jump.m4a');
         this.load.audio('hit', 'assets/sounds/hit.m4a');
