@@ -12,8 +12,9 @@ class DinoGame extends Phaser.Scene {
     }
 
     create() {
-        this.emitter = EventDispatcher.getInstance();
         const { height, width } = this.game.config;
+
+        this.emitter = EventDispatcher.getInstance();
         this.gameSpeed = 10;
         this.isGameRunning = false;
         this.respawnTime = 0;
@@ -41,7 +42,7 @@ class DinoGame extends Phaser.Scene {
 
         this.scoreText = this.add
             .text(width - 50, 0, '00000', {
-                fill: '#535353',
+                fill: '#000000',
                 font: '900 35px Courier',
                 resolution: 5,
             })
@@ -50,7 +51,7 @@ class DinoGame extends Phaser.Scene {
 
         this.highScoreText = this.add
             .text(0, 0, '00000', {
-                fill: '#535353',
+                fill: '#FF0000',
                 font: '900 35px Courier',
                 resolution: 5,
             })
@@ -71,16 +72,21 @@ class DinoGame extends Phaser.Scene {
 
         this.obsticles = this.physics.add.group({ allowGravity: false });
 
-        let button = this.add.image(width, 0, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
-        button.on(
+        const fullscreen_btn = this.add
+            .image(width - 5, 3, 'fullscreen', 0)
+            .setOrigin(1, 0)
+            .setInteractive();
+        const f_key = this.input.keyboard.addKey('F');
+
+        fullscreen_btn.on(
             'pointerup',
             function () {
                 if (this.scale.isFullscreen) {
-                    button.setFrame(0);
+                    fullscreen_btn.setFrame(0);
 
                     this.scale.stopFullscreen();
                 } else {
-                    button.setFrame(1);
+                    fullscreen_btn.setFrame(1);
 
                     this.scale.startFullscreen();
                 }
@@ -88,16 +94,14 @@ class DinoGame extends Phaser.Scene {
             this
         );
 
-        let FKey = this.input.keyboard.addKey('F');
-
-        FKey.on(
+        f_key.on(
             'down',
             function () {
                 if (this.scale.isFullscreen) {
-                    button.setFrame(0);
+                    fullscreen_btn.setFrame(0);
                     this.scale.stopFullscreen();
                 } else {
-                    button.setFrame(1);
+                    fullscreen_btn.setFrame(1);
                     this.scale.startFullscreen();
                 }
             },
@@ -262,8 +266,8 @@ class DinoGame extends Phaser.Scene {
         });
 
         this.anims.create({
-            key: 'enemy-dino-fly',
-            frames: this.anims.generateFrameNumbers('enemy-bird', {
+            key: 'doge-coin-fly',
+            frames: this.anims.generateFrameNumbers('doge-coin', {
                 start: 0,
                 end: 1,
             }),
@@ -307,6 +311,18 @@ class DinoGame extends Phaser.Scene {
         });
     }
 
+    jump() {
+        if (!this.dino.body.onFloor() || this.dino.body.velocity.x > 0) {
+            return;
+        }
+
+        this.jumpSound.play();
+        this.dino.body.height = 92;
+        this.dino.body.offset.y = 0;
+        this.dino.setVelocityY(-1600);
+        this.dino.setTexture('dino', 0);
+    }
+
     handleInputs() {
         this.restart.on('pointerdown', () => {
             this.dino.setVelocityY(0);
@@ -320,15 +336,15 @@ class DinoGame extends Phaser.Scene {
         });
 
         this.input.keyboard.on('keydown-SPACE', () => {
-            if (!this.dino.body.onFloor() || this.dino.body.velocity.x > 0) {
-                return;
-            }
+            this.jump();
+        });
 
-            this.jumpSound.play();
-            this.dino.body.height = 92;
-            this.dino.body.offset.y = 0;
-            this.dino.setVelocityY(-1600);
-            this.dino.setTexture('dino', 0);
+        this.input.keyboard.on('keydown-UP', () => {
+            this.jump();
+        });
+
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.switch('TitleScene');
         });
 
         this.input.keyboard.on('keydown-DOWN', () => {
@@ -360,11 +376,11 @@ class DinoGame extends Phaser.Scene {
                 .create(
                     this.game.config.width + distance,
                     this.game.config.height - enemyHeight[Math.floor(Math.random() * 2)],
-                    `enemy-bird`
+                    `doge-coin`
                 )
                 .setOrigin(0, 1);
-                obsticle.play('enemy-dino-fly', 1);
-                obsticle.body.height = obsticle.body.height / 1.5;
+            obsticle.play('enemy-dino-fly', 1);
+            obsticle.body.height = obsticle.body.height / 1.5;
         } else {
             obsticle = this.obsticles
                 .create(this.game.config.width + distance, this.game.config.height, `enemy_coin_${enemy_level || Math.floor(Math.random() * 7)}`)
