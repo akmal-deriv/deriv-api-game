@@ -25,7 +25,6 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('dino-hurt', 'assets/images/dino-hurt.png');
         this.load.image('restart', 'assets/images/restart.png');
         this.load.image('game-over', 'assets/images/game-over.png');
-        this.load.image('cloud', 'assets/images/cloud.png');
 
         this.load.spritesheet('star', 'assets/images/stars.png', {
             frameWidth: 9,
@@ -64,6 +63,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('enemy_coin_4', 'assets/images/enemy_ethereum.png');
         this.load.image('enemy_coin_5', 'assets/images/enemy_bitcoin.png');
         this.load.image('enemy_coin_6', 'assets/images/enemy_tether.png');
+        this.load.image('enemy_coin_7', 'assets/images/enemy_charts.png');
 
         this.load.audio('jump', 'assets/sounds/jump.m4a');
         this.load.audio('hit', 'assets/sounds/hit.m4a');
