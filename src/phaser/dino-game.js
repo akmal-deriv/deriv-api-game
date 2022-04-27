@@ -383,7 +383,7 @@ class DinoGame extends Phaser.Scene {
         let obsticle;
 
         if (enemy_level >= 10) {
-            const enemyHeight = [20, 50];
+            const enemyHeight = [50, 80];
             obsticle = this.obsticles
                 .create(
                     this.game.config.width + distance,
@@ -393,16 +393,6 @@ class DinoGame extends Phaser.Scene {
                 .setOrigin(0, 1);
             obsticle.play('doge-coin-fly', 1);
             obsticle.body.height = obsticle.body.height / 1.5;
-        } else if (enemy_level < 10 && enemy_level > 6) {
-            obsticle = this.obsticles
-                .create(
-                    this.game.config.width + distance,
-                    this.game.config.height,
-                    `enemy_coin_${7 || Math.floor(Math.random() * 7)}`
-                )
-                .setOrigin(0, 1);
-
-            obsticle.body.offset.y = +10;
         } else {
             obsticle = this.obsticles
                 .create(

@@ -63,7 +63,9 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('enemy_coin_4', 'assets/images/enemy_ethereum.png');
         this.load.image('enemy_coin_5', 'assets/images/enemy_bitcoin.png');
         this.load.image('enemy_coin_6', 'assets/images/enemy_tether.png');
-        this.load.image('enemy_coin_7', 'assets/images/enemy_charts.png');
+        this.load.image('enemy_coin_7', 'assets/images/enemy_bitcoin_heap.png');
+        this.load.image('enemy_coin_8', 'assets/images/enemy_shococoin_heap.png');
+        this.load.image('enemy_coin_9', 'assets/images/enemy_gold_heap.png');
 
         this.load.audio('jump', 'assets/sounds/jump.m4a');
         this.load.audio('hit', 'assets/sounds/hit.m4a');
