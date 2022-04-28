@@ -1,11 +1,16 @@
 import Phaser from 'phaser';
 import EventDispatcher from '../util/eventDispatcher';
 
+// import API data
+import setEnemyLevelSession from '../api/tick-stream';
+
+
 const backgrounds = ['background1', 'background2', 'background3', 'background4', 'background5', 'background6'];
 // eslint-disable-next-line no-unused-vars
 let dynamic_background, background;
 let background_index = 0;
 
+if (sessionStorage.getItem('user_token')) setEnemyLevelSession();
 class DinoGame extends Phaser.Scene {
     constructor() {
         super('PlayScene');
@@ -70,8 +75,10 @@ class DinoGame extends Phaser.Scene {
 
         this.gameOverScreen = this.add.container(width / 2, height / 2 - 50).setAlpha(0);
         this.gameOverText = this.add.image(0, 0, 'game-over');
-        this.restart = this.add.image(0, 80, 'restart').setInteractive();
-        this.gameOverScreen.add([this.gameOverText, this.restart]);
+        this.restart = this.add.image(-40, 80, 'restart').setInteractive();
+        this.turnOff = this.add.image(40, 80, 'turn-off').setInteractive();
+
+        this.gameOverScreen.add([this.gameOverText, this.turnOff, this.restart]);
 
         this.obsticles = this.physics.add.group({ allowGravity: false });
 
@@ -338,6 +345,12 @@ class DinoGame extends Phaser.Scene {
             this.isGameRunning = true;
             this.gameOverScreen.setAlpha(0);
             this.anims.resumeAll();
+        });
+
+        this.turnOff.on('pointerdown', () => {
+            sessionStorage.removeItem('user_token');
+            sessionStorage.removeItem('user_email');
+            this.scene.switch('LoginScene')
         });
 
         this.input.keyboard.on('keydown-SPACE', () => {
