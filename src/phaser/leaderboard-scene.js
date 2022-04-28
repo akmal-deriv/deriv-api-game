@@ -1,6 +1,5 @@
-/* eslint-disable no-restricted-globals*/
 import Phaser from 'phaser';
-
+/* eslint-disable no-restricted-globals*/
 class LeaderboardScene extends Phaser.Scene {
     constructor() {
         super('LeaderboardScene');
@@ -67,6 +66,8 @@ class LeaderboardScene extends Phaser.Scene {
             },
             this
         );
+
+    this.handleInputs();
     }
 
     addScore(rank, score, name) {
@@ -74,6 +75,10 @@ class LeaderboardScene extends Phaser.Scene {
         this.add.bitmapText(280, 150 + 60 * rank, 'carrier_command', score, 34);
         this.add.bitmapText(580, 150 + 60 * rank, 'carrier_command', name, 34);
     }
+    handleInputs(){
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.switch('TitleScene');
+        });}
 }
 
 export default LeaderboardScene;
