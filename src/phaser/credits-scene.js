@@ -10,7 +10,7 @@ class CreditsScene extends Phaser.Scene {
     create() {
 
         const background = this.add.sprite(0, 0, 'title_background');
-        const title = this.add.bitmapText(this.game.config.width - 500, 50, 'carrier_command', 'CREDITS', 34);
+        const title = this.add.bitmapText(this.game.config.width - 500, 50, 'shortStack', 'CREDITS', 44);
         const name =  this.add.bitmapText(110, 150, 'desyrel', 'NAME', 40);
         const github = this.add.bitmapText(400, 150, 'desyrel', 'GITHUB', 40);
         const akmal = this.add.bitmapText(110, 250, 'desyrel', 'Akmal', 38);
@@ -22,7 +22,7 @@ class CreditsScene extends Phaser.Scene {
         const vijayasree = this.add.bitmapText(110, 550, 'desyrel', 'Vijayasree', 38);
         const vijayasree_git = this.add.bitmapText(400, 550, 'desyrel', 'https://github.com/vijayasree-deriv', 38);
         const yauheni = this.add.bitmapText(110, 650, 'desyrel', 'Yauheni', 38);
-        const yauheni_git = this.add.bitmapText(400, 650, 'desyrel', 'https://github.com/yauheni-deriv', 38);
+        const yauheni_git = this.add.bitmapText(400, 650, 'desyrel', 'https://github.com/yauheni-kryzhyk-deriv', 38);
 
         const fullscreen_btn = this.add
             .image(this.game.config.width - 5, 5, 'fullscreen', 0)
