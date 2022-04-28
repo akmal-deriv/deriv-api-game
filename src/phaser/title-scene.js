@@ -11,10 +11,11 @@ class TitleScene extends Phaser.Scene {
         // eslint-disable-next-line no-unused-vars
         const title = this.add.bitmapText(this.game.config.width - 400, 50, 'carrier_command', 'MAIN MENU', 34);
         const option_1 = this.add.bitmapText(80, 150, 'carrier_command', 'PLAY', 34);
-        const option_2 = this.add.bitmapText(80, 210, 'carrier_command', 'LEVELS', 34);
-        const option_3 = this.add.bitmapText(80, 270, 'carrier_command', 'LEADERBOARD', 34);
-        const option_4 = this.add.bitmapText(80, 330, 'carrier_command', 'OPTIONS', 34);
-        const option_5 = this.add.bitmapText(80, 390, 'carrier_command', 'EXIT', 34);
+        const option_2 = this.add.bitmapText(80, 240, 'carrier_command', 'LEVELS', 34);
+        const option_3 = this.add.bitmapText(80, 330, 'carrier_command', 'LEADERBOARD', 34);
+        const option_4 = this.add.bitmapText(80, 420, 'carrier_command', 'OPTIONS', 34);
+        const option_5 = this.add.bitmapText(80, 510, 'carrier_command', 'CREDITS', 34);
+        const option_6 = this.add.bitmapText(80, 600, 'carrier_command', 'EXIT', 34);
         const fullscreen_btn = this.add
             .image(this.game.config.width - 5, 5, 'fullscreen', 0)
             .setOrigin(1, 0)
@@ -38,8 +39,11 @@ class TitleScene extends Phaser.Scene {
         option_4.on('pointerdown', () => this.doNothing());
 
         option_5.setInteractive({ useHandCursor: true });
-        option_5.on('pointerdown', () => this.exitGame());
-        option_5.tint = 0xff3333;
+        option_5.on('pointerdown', () => this.showCredits());
+
+        option_6.setInteractive({ useHandCursor: true });
+        option_6.on('pointerdown', () => this.exitGame());
+        option_6.tint = 0xff3333;
 
         fullscreen_btn.on(
             'pointerup',
@@ -80,6 +84,10 @@ class TitleScene extends Phaser.Scene {
         alert(
             'Dear {client_name},\n\nThe current feature is only available to premium customers.\nPlay our game on your smartphone, tablet, Smart TV, laptop, all for one fixed monthly fee of $159 ONLY!\nNo extra costs, no contracts.\n\nI promise.'
         );
+    }
+
+    showCredits(){
+        this.scene.switch('CreditsScene');
     }
 
     exitGame() {

@@ -18,6 +18,8 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('background6', 'assets/images/postapocalypse1.png');
 
         this.load.bitmapFont('carrier_command', 'assets/fonts/carrier_command.png', 'assets/fonts/carrier_command.xml');
+        this.load.bitmapFont('desyrel','assets/fonts/desyrel.png','assets/fonts/desyrel.xml' );
+        this.load.bitmapFont('shortStack', 'assets/fonts/shortStack.png', 'assets/fonts/shortStack.xml');
         this.load.image('title_background', 'assets/images/title_background.jpg');
 
         this.load.image('ground', 'assets/images/grass_and_road.png');
@@ -27,7 +29,7 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('game-over', 'assets/images/game-over.png');
         this.load.image('turn-off', 'assets/images/turn-off.png');
 
-        this.load.image('token', 'assets/images/person.png');      
+        this.load.image('token', 'assets/images/person.png');
 
         this.load.spritesheet('star', 'assets/images/stars.png', {
             frameWidth: 9,

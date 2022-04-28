@@ -13,6 +13,7 @@ import TitleScene from './phaser/title-scene';
 import LeaderboardScene from './phaser/leaderboard-scene';
 import LoginScene from './phaser/login-scene';
 import playDinoGame from './phaser/dino-game';
+import CreditsScene from './phaser/credits-scene';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const config = {
@@ -41,7 +42,7 @@ const config = {
     dom: {
         createContainer: true
     },
-    scene: [PreloadScene, LeaderboardScene, LoginScene, TitleScene, playDinoGame],
+    scene: [PreloadScene, LeaderboardScene, CreditsScene,LoginScene, TitleScene, playDinoGame],
 };
 
 // eslint-disable-next-line no-unused-vars
