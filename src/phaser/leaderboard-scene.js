@@ -7,60 +7,7 @@ class LeaderboardScene extends Phaser.Scene {
     }
 
     create() {
-        const api_url = 'http://example.com/userRanks.json';
-
-        const testing_data = [
-            {
-                rank: '1',
-                score: '2700',
-                name: 'player 1',
-            },
-            {
-                rank: '2',
-                score: '2600',
-                name: 'player 2',
-            },
-            {
-                rank: '3',
-                score: '2500',
-                name: 'player 3',
-            },
-            {
-                rank: '4',
-                score: '2400',
-                name: 'player 4',
-            },
-            {
-                rank: '5',
-                score: '2300',
-                name: 'player 5',
-            },
-            {
-                rank: '6',
-                score: '2200',
-                name: 'player 6',
-            },
-            {
-                rank: '7',
-                score: '2100',
-                name: 'player 7',
-            },
-            {
-                rank: '8',
-                score: '2000',
-                name: 'player 8',
-            },
-            {
-                rank: '9',
-                score: '1900',
-                name: 'player 9',
-            },
-            {
-                rank: '10',
-                score: '1800',
-                name: 'player 10',
-            },
-        ];
+        const api_url = 'https://udgo-be.herokuapp.com/v1';
 
         const background = this.add.sprite(0, 0, 'title_background');
         // eslint-disable-next-line no-unused-vars
@@ -70,9 +17,13 @@ class LeaderboardScene extends Phaser.Scene {
         const score = this.add.bitmapText(280, 150, 'carrier_command', 'SCORE', 34);
         const name = this.add.bitmapText(580, 150, 'carrier_command', 'NAME', 34);
 
-        testing_data.forEach(record => {
-            this.addScore(record.rank, record.score, record.name);
-        });
+        fetch(`${api_url}/data`)
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(record => {
+                    this.addScore(record.rank, record.score, record.name);
+                });
+            });
 
         const fullscreen_btn = this.add
             .image(this.game.config.width - 5, 5, 'fullscreen', 0)
