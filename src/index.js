@@ -8,6 +8,7 @@ import reportWebVitals from './reportWebVitals';
 // import scenes
 import PreloadScene from './phaser/preload-scene';
 import TitleScene from './phaser/title-scene';
+import LeaderboardScene from './phaser/leaderboard-scene';
 import playDinoGame from './phaser/dino-game';
 
 // import API data
@@ -30,7 +31,7 @@ const config = {
             debug: false,
         },
     },
-    scene: [PreloadScene, TitleScene, playDinoGame],
+    scene: [PreloadScene, TitleScene, LeaderboardScene, playDinoGame],
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

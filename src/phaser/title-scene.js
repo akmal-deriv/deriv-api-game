@@ -12,8 +12,9 @@ class TitleScene extends Phaser.Scene {
         const title = this.add.bitmapText(this.game.config.width - 400, 50, 'carrier_command', 'MAIN MENU', 34);
         const option_1 = this.add.bitmapText(80, 150, 'carrier_command', 'PLAY', 34);
         const option_2 = this.add.bitmapText(80, 210, 'carrier_command', 'LEVELS', 34);
-        const option_3 = this.add.bitmapText(80, 270, 'carrier_command', 'OPtiONS', 34);
-        const option_4 = this.add.bitmapText(80, 330, 'carrier_command', 'EXIT', 34);
+        const option_3 = this.add.bitmapText(80, 270, 'carrier_command', 'LEADERBOARD', 34);
+        const option_4 = this.add.bitmapText(80, 330, 'carrier_command', 'OPTIONS', 34);
+        const option_5 = this.add.bitmapText(80, 390, 'carrier_command', 'EXIT', 34);
         const fullscreen_btn = this.add
             .image(this.game.config.width - 5, 5, 'fullscreen', 0)
             .setOrigin(1, 0)
@@ -31,11 +32,14 @@ class TitleScene extends Phaser.Scene {
         option_2.on('pointerdown', () => this.doNothing());
 
         option_3.setInteractive({ useHandCursor: true });
-        option_3.on('pointerdown', () => this.doNothing());
+        option_3.on('pointerdown', () => this.scene.switch('LeaderboardScene'));
 
         option_4.setInteractive({ useHandCursor: true });
-        option_4.on('pointerdown', () => this.exitGame());
-        option_4.tint = 0xff3333;
+        option_4.on('pointerdown', () => this.doNothing());
+
+        option_5.setInteractive({ useHandCursor: true });
+        option_5.on('pointerdown', () => this.exitGame());
+        option_5.tint = 0xff3333;
 
         fullscreen_btn.on(
             'pointerup',
