@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 // import scenes
 import PreloadScene from './phaser/preload-scene';
 import TitleScene from './phaser/title-scene';
+import LeaderboardScene from './phaser/leaderboard-scene';
 import LoginScene from './phaser/login-scene';
 import playDinoGame from './phaser/dino-game';
 
@@ -40,7 +41,7 @@ const config = {
     dom: {
         createContainer: true
     },
-    scene: [PreloadScene, LoginScene, TitleScene, playDinoGame],
+    scene: [PreloadScene, LeaderboardScene, LoginScene, TitleScene, playDinoGame],
 };
 
 // eslint-disable-next-line no-unused-vars
