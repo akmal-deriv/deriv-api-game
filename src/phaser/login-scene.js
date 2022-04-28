@@ -44,7 +44,7 @@ class LoginScene extends Phaser.Scene {
             })
             .popUp(500);
       
-            this.message = this.add.text(screenCenterX, 250, "Submit your Deirv API token for playing the game", {
+            this.message = this.add.text(screenCenterX, 250, "Submit your Deriv API token for playing the game", {
                 color: "#FFFFFF",
                 fontSize: 30,
                 fontStyle: "bold",
