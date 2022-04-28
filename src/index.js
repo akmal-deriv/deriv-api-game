@@ -1,4 +1,6 @@
 import Phaser from 'phaser';
+import RexUIPlugin from 'phaser3-rex-plugins/templates/ui/ui-plugin.js';
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -8,14 +10,12 @@ import reportWebVitals from './reportWebVitals';
 // import scenes
 import PreloadScene from './phaser/preload-scene';
 import TitleScene from './phaser/title-scene';
+import LoginScene from './phaser/login-scene';
 import playDinoGame from './phaser/dino-game';
 
-// import API data
-import setEnemyLevelSession from './api/tick-stream';
-
-setEnemyLevelSession();
-
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const config = {
+    parent: root,
     type: Phaser.AUTO,
     transparent: true,
     scale: {
@@ -30,10 +30,19 @@ const config = {
             debug: false,
         },
     },
-    scene: [PreloadScene, TitleScene, playDinoGame],
+    plugins: {
+        scene: [{
+            key: 'rexUI',
+            plugin: RexUIPlugin,
+            mapping: 'rexUI',
+        }]
+    },
+    dom: {
+        createContainer: true
+    },
+    scene: [PreloadScene, LoginScene, TitleScene, playDinoGame],
 };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
 // eslint-disable-next-line no-unused-vars
 const game = new Phaser.Game(config);
 

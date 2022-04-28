@@ -25,6 +25,9 @@ class PreloadScene extends Phaser.Scene {
         this.load.image('dino-hurt', 'assets/images/dino-hurt.png');
         this.load.image('restart', 'assets/images/restart.png');
         this.load.image('game-over', 'assets/images/game-over.png');
+        this.load.image('turn-off', 'assets/images/turn-off.png');
+
+        this.load.image('token', 'assets/images/person.png');      
 
         this.load.spritesheet('star', 'assets/images/stars.png', {
             frameWidth: 9,
@@ -73,7 +76,7 @@ class PreloadScene extends Phaser.Scene {
     }
 
     create() {
-        this.scene.start('TitleScene');
+        this.scene.start('LoginScene');
     }
 }
 
