@@ -10,19 +10,19 @@ class CreditsScene extends Phaser.Scene {
     create() {
 
         const background = this.add.sprite(0, 0, 'title_background');
-        const title = this.add.bitmapText(this.game.config.width - 500, 50, 'shortStack', 'CREDITS', 44);
-        const name =  this.add.bitmapText(110, 150, 'desyrel', 'NAME', 40);
+        const title = this.add.bitmapText(this.game.config.width - 500, 50, 'carrier_command', 'CREDITS', 34);
+        const name =  this.add.bitmapText(80, 150, 'desyrel', 'NAME', 40);
         const github = this.add.bitmapText(400, 150, 'desyrel', 'GITHUB', 40);
-        const akmal = this.add.bitmapText(110, 250, 'desyrel', 'Akmal', 38);
-        const akmal_git = this.add.bitmapText(400, 250, 'desyrel', 'https://github.com/akmal-binary', 38);
-        const hubert = this.add.bitmapText(110, 350, 'desyrel', 'Hubert', 38);
-        const hubert_git = this.add.bitmapText(400, 350, 'desyrel', 'https://github.com/hubert-deriv', 38);
-        const mahdiyeh = this.add.bitmapText(110, 450, 'desyrel', 'Mahdiyeh', 38);
-        const mahdiyeh_git = this.add.bitmapText(400, 450, 'desyrel', 'https://github.com/mahdiyeh-fs', 38);
-        const vijayasree = this.add.bitmapText(110, 550, 'desyrel', 'Vijayasree', 38);
-        const vijayasree_git = this.add.bitmapText(400, 550, 'desyrel', 'https://github.com/vijayasree-deriv', 38);
-        const yauheni = this.add.bitmapText(110, 650, 'desyrel', 'Yauheni', 38);
-        const yauheni_git = this.add.bitmapText(400, 650, 'desyrel', 'https://github.com/yauheni-kryzhyk-deriv', 38);
+        const akmal = this.add.bitmapText(80, 250, 'carrier_command', 'Akmal', 24);
+        const akmal_git = this.add.bitmapText(400, 250, 'carrier_command', 'https://github.com/akmal-binary', 24);
+        const hubert = this.add.bitmapText(80, 350, 'carrier_command', 'Hubert', 24);
+        const hubert_git = this.add.bitmapText(400, 350, 'carrier_command', 'https://github.com/hubert-deriv', 24);
+        const mahdiyeh = this.add.bitmapText(80, 450, 'carrier_command', 'Mahdiyeh', 24);
+        const mahdiyeh_git = this.add.bitmapText(400, 450, 'carrier_command', 'https://github.com/mahdiyeh-fs', 24);
+        const vijayasree = this.add.bitmapText(80, 550, 'carrier_command', 'Vijayasree', 24);
+        const vijayasree_git = this.add.bitmapText(400, 550, 'carrier_command', 'https://github.com/vijayasree-deriv', 24);
+        const yauheni = this.add.bitmapText(80, 650, 'carrier_command', 'Yauheni', 24);
+        const yauheni_git = this.add.bitmapText(400, 650, 'carrier_command', 'https://github.com/yauheni-kryzhyk-deriv', 24);
 
         const fullscreen_btn = this.add
             .image(this.game.config.width - 5, 5, 'fullscreen', 0)
