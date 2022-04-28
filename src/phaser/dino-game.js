@@ -10,7 +10,7 @@ const backgrounds = ['background1', 'background2', 'background3', 'background4',
 let dynamic_background, background;
 let background_index = 0;
 
-setEnemyLevelSession();
+if (sessionStorage.getItem('user_token')) setEnemyLevelSession();
 class DinoGame extends Phaser.Scene {
     constructor() {
         super('PlayScene');
